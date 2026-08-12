@@ -1,0 +1,51 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: dist/community.lazycat.app.mango.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: git
+
+build:
+  toolchains: []
+  run_buildscript: false
+
+images:
+  - id: mango
+    target: service
+    service: mango
+    source: ghcr.io/vrsandeep/mango-go
+    channel: custom
+    sort: created
+    tag_regex: '^dev$'
+    delivery:
+      mode: lazycat
+
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    create_if_missing: true
+    changelog_locales: [zh, zh_CN, en]
+    retry:
+      enabled: false
+      max_attempts: 3
+      initial_delay: 2s
+      max_delay: 30s
+    application:
+      language: zh
+      name: Mango
+      source: https://github.com/vrsandeep/mango-go
+      source_author: vrsandeep
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: Mango
+    summary: Mango LazyCat package published from GitHub Actions.

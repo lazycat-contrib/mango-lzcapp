@@ -1,0 +1,18 @@
+package: community.lazycat.app.mango
+version: 0.0.6
+name: Mango
+description: 一个自托管的漫画服务器和网络阅读器
+min_os_version: 1.5.0
+homepage: https://github.com/vrsandeep/mango-go
+author: vrsandeep
+
+locales:
+  zh:
+    name: Mango
+    description: 一个自托管的漫画服务器和网络阅读器
+  zh_CN:
+    name: Mango
+    description: 一个自托管的漫画服务器和网络阅读器
+  en:
+    name: Mango
+    description: a self-hosted manga server and web reader

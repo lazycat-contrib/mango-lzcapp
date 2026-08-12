@@ -1,0 +1,20 @@
+application:
+  subdomain: mango
+  background_task: true
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://mango:8080/
+
+services:
+  mango:
+    # ghcr.io/vrsandeep/mango-go:dev
+    image: registry.lazycat.cloud/czyt/vrsandeep/mango-go:0d0ba7aa5cc862b8
+    environment:
+      - GIN_MODE=release
+      - MANGO_DATABASE_PATH=/app/data/mango.db
+      - MANGO_LIBRARY_PATH=/manga
+    binds:
+      - /lzcapp/var/data:/app/data
+      - /lzcapp/var/manga:/manga
